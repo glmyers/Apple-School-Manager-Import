@@ -174,7 +174,7 @@ def createRosters(inFile, outFile):
 
 def main():
     print()
-    inputs = Path(f'/Volumes/Macintosh HD/Users/{getuser()}/downloads')
+    inputs = Path(f'downloads')
     results = Path('uploads')
     #Locations found in Apple School Manager locations.csv
     locations = locationDict(f'{results}/locations.csv')
