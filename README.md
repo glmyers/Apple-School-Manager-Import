@@ -1,5 +1,5 @@
 # Apple School Manager Import
-Python script to automate the creation of upload files for Apple School Manager from Veracross exports. Note the Veracross export files are in Excel format and must be converted to CSV. Do not use Excel to make this conversion because the result would be ASCII encoded rather the desired UTF-8 encoded. Importing the file into a Google spreadsheet allows simple download of the file as CSV with UTF-8 encoding.
+Python script to automate the creation of upload files for Apple School Manager from Veracross exports. Note the Veracross export files are in Excel format and must be converted to CSV. Do not use Excel to make this conversion because the result would be ASCII encoded rather than UTF-8 encoded as is desired. Importing the file into a Google spreadsheet allows simple download of the file as CSV with UTF-8 encoding.
 ## Veracross export files
 The script expects five CSV export files from the Veracross school information system in a folder named "downloads" in the current working directory.   
 * VCstudents.csv - (*from an export of a Find Students querry*)
