@@ -14,7 +14,7 @@ middle_name | Middle Name
 last_name | Last Name
 grade_level | Current Grade
 email_address | Email 1
-sis_username | Email 1
+sis_username | Username
 password_policy | ''
 location_id | School Level (*used to lookup* Abbreviation)
 ## Staff
@@ -26,7 +26,7 @@ first_name | First Name
 middle_name | Middle Name
 last_name | Last Name
 email_address | Email 1
-sis_username | Email 1
+sis_username | Username
 location_id | School Level (*used to lookup* Abbreviation)
 ## Courses
 Apple School Manager | Veracross - *Course List* (must have a section)
