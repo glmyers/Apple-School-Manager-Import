@@ -49,4 +49,3 @@ Apple School Manager | Veracross
 roster_id | Enrollment ID
 class_id | Internal Class ID
 student_id | Person ID
-.
