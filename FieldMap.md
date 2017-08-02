@@ -38,10 +38,10 @@ location_id | School Level
 ## Classes
 Apple School Manager | Veracross
 -------------------------|------------------------
-class_id | CLASS\: Internal Class ID
-class_number | CLASS\: Class ID
+class_id | CLASS: Internal Class ID
+class_number | CLASS: Class ID
 course_id | CLASS COURSE: Internal Course ID
-instructor_id | STAFF/FACULTY\: Person ID
+instructor_id | STAFF/FACULTY: Person ID
 location_id | School Level *lookup* Abbreviation
 ## Rosters
 Apple School Manager | Veracross
