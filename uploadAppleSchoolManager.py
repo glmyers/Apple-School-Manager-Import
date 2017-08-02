@@ -54,7 +54,7 @@ def createStudents(inFile, outFile, divisions):
             new['last_name'] = row['Last Name']
             new['grade_level'] = row['Current Grade']
             new['email_address'] = row['Email 1']
-            new['sis_username'] = row['Email 1']
+            new['sis_username'] = row['Username']
             new['password_policy'] = ''
             new['location_id'] = divisions[row['School Level']]
             writer.writerow(new)
@@ -80,7 +80,7 @@ def createStaff(inFile, outFile, divisions):
                 new['middle_name'] = row['Middle Name']
                 new['last_name'] = row['Last Name']
                 new['email_address'] = row['Email 1']
-                new['sis_username'] = row['Email 1']
+                new['sis_username'] = row['Username']
                 new['location_id'] = divisions[row['School Level']]
                 staffDict[row['Person ID']] = new
             else:
