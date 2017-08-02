@@ -1,4 +1,4 @@
-# Field Mapping
+# Field Map
 ## Locations
 Apple School Manager | Veracross - *School Levels*
 -----------------------------------|----------------------------------
