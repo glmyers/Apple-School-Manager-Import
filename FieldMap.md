@@ -8,7 +8,7 @@ location_name | School Level: Description
 Apple School Manager | Veracross
 -------------------------|------------------------
 person_id | Person ID
-person_number = ''
+person_number | ''
 first_name | First Name
 middle_name | Middle Name
 last_name | Last Name
@@ -21,7 +21,7 @@ location_id | School Level *lookup* Abbreviation
 Apple School Manager | Veracross
 -------------------------|------------------------
 person_id | Person ID
-person_number = ''
+person_number | ''
 first_name | First Name
 middle_name | Middle Name
 last_name | Last Name
