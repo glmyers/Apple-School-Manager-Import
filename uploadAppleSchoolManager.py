@@ -47,14 +47,14 @@ def createStudents(inFile, outFile, divisions):
         #Output data to the file for all users.
         for row in reader:
             new = defaultdict(dict)
-            new['person_id'] = row['Person ID']
+            new['person_id'] = row['person_id']
             new['person_number'] = ''
-            new['first_name'] = row['First Name']
-            new['middle_name'] = row['Middle Name']
-            new['last_name'] = row['Last Name']
-            new['grade_level'] = row['Current Grade']
-            new['email_address'] = row['Email 1']
-            new['sis_username'] = row['Username']
+            new['first_name'] = row['first_name']
+            new['middle_name'] = row['middle_name']
+            new['last_name'] = row['last_name']
+            new['grade_level'] = row['grade_level']
+            new['email_address'] = row['email_address']
+            new['sis_username'] = row['sis_username']
             new['password_policy'] = ''
             new['location_id'] = divisions[row['School Level']]
             writer.writerow(new)
@@ -74,23 +74,23 @@ def createStaff(inFile, outFile, divisions):
         for row in reader:
             if row['Person ID'] not in staffDict:
                 new = defaultdict(dict)
-                new['person_id'] = row['Person ID']
+                new['person_id'] = row['person_id']
                 new['person_number'] = ''
-                new['first_name'] = row['First Name']
-                new['middle_name'] = row['Middle Name']
-                new['last_name'] = row['Last Name']
-                new['email_address'] = row['Email 1']
-                new['sis_username'] = row['Username']
+                new['first_name'] = row['first_name']
+                new['middle_name'] = row['middle_name']
+                new['last_name'] = row['last_name']
+                new['email_address'] = row['email_address']
+                new['sis_username'] = row['sis_username']
                 new['location_id'] = divisions[row['School Level']]
-                staffDict[row['Person ID']] = new
+                staffDict[row['person_id']] = new
             else:
                 count = 1
                 while count < 16:
                     count += 1
-                    if not staffDict[row['Person ID']][f'location_id_{count}'] == {}:
+                    if not staffDict[row['person_id']][f'location_id_{count}'] == {}:
                         continue
                     else:
-                        staffDict[row['Person ID']][f'location_id_{count}'] = \
+                        staffDict[row['person_id']][f'location_id_{count}'] = \
                                     divisions[row['School Level']]
                         break
         for ID, Staff in staffDict.items():
@@ -109,10 +109,10 @@ def createCourses(inFile, outFile, divisions):
         #Output data to the file for all users.
         for row in reader:
             new = defaultdict(dict)
-            new['course_id'] = row['Internal Course ID']
-            new['course_number'] = row['Course ID']
-            new['course_name'] = row['Course Name']
-            new['location_id'] = row['School Level']
+            new['course_id'] = row['course_id']
+            new['course_number'] = row['course_number']
+            new['course_name'] = row['course_name']
+            new['location_id'] = row['location_id']
             writer.writerow(new)
     return
 
@@ -130,25 +130,25 @@ def createClasses(inFile, outFile, divisions):
         for row in reader:
             # if not (row['Role'] == 'Primary Teacher' or
                     # row['Role'] == "Teacher's Aide"): continue
-            if row['CLASS: Internal Class ID'] not in classesDict:
+            if row['class_id'] not in classesDict:
                 new = defaultdict(dict)
-                new['class_id'] = row['CLASS: Internal Class ID']
-                new['class_number'] = row['CLASS: Class ID']
-                new['course_id'] = row['CLASS COURSE: Internal Course ID']
-                new['instructor_id'] = row['STAFF/FACULTY: Person ID']
+                new['class_id'] = row['class_id']
+                new['class_number'] = row['class_number']
+                new['course_id'] = row['course_id']
+                new['instructor_id'] = row['instructor_id']
                 new['location_id'] = divisions[row['School Level']]
-                classesDict[row['CLASS: Internal Class ID']] = new
+                classesDict[row['class_id']] = new
             else:
                 count = 1
                 while count < 16:
                     count += 1
-                    if not (classesDict[row['CLASS: Internal Class ID']]
+                    if not (classesDict[row['class_id']]
                             [f'instructor_id_{count}'] == {}):
                         continue
                     else:
-                        classesDict[row['CLASS: Internal Class ID']]\
+                        classesDict[row['class_id']]\
                                 [f'instructor_id_{count}'] = \
-                                    row['STAFF/FACULTY: Person ID']
+                                    row['instructor_id']
                         break
         for ID, classes in classesDict.items():
             writer.writerow(classes)
@@ -165,9 +165,9 @@ def createRosters(inFile, outFile):
         writer.writeheader()
         for row in reader:
             new = defaultdict(dict)
-            new['roster_id'] = row['Enrollment ID']
-            new['class_id'] = row['Internal Class ID']
-            new['student_id'] = row['Person ID']
+            new['roster_id'] = row['roster_id']
+            new['class_id'] = row['class_id']
+            new['student_id'] = row['student_id']
             writer.writerow(new)
     return
 
