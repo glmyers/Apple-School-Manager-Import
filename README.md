@@ -1,8 +1,10 @@
 # Apple School Manager Import
-Python script to automate the creation of upload files for Apple School Manager from Veracross exports. Note the Veracross export files should be in CSV format and come from queries utilizing the names below. Note that the students query utilized checks to ensure only students with a school email address are exported. Not all our students have functioning email in our system, but they all have an address assigned. Nonfunctioning addresses are store in the 'Email 2' of their record to avoid bounce list issues. The 'gradesNoEmail' funtion in the 'fieldList.py' file is used in the script to ensure the correct email field from the export is used. This fuction is in this file for ease of editing the grades since it email is activated for some grades during the school year. If your school only uses 'Email 1' you can simply delete all grades leaving an empty list. 
+Python script to automate the creation of upload files for Apple School Manager from Veracross exports. Note the Veracross export files should be in CSV format and come from queries utilizing the names below. 
+## Domain and Email
+Note that the students query utilized checks to ensure only students with a school email address are exported. Not all our students have functioning email in our system, but they all have an address assigned. Nonfunctioning addresses are store in the 'Email 2' of their record to avoid bounce list issues. The 'domain' global variable located under the import statements set to the domain for the the school where I work. It is utilized in the logic for choosing which of the two emails to use and causes students without a school email to be ignored.  
 ## Veracross export files
 The script expects five CSV export files from the Veracross school information system in a folder named "downloads" in the current working directory. The 'renameExports.py' script will move exported CSV files from the user's Downloads into the correct folder in the working directory while also striping off the information appeded to query names when downloading CSV files.  
-* VCstudents.csv - (*from an export of a Find Students query 251506 must be edited to use your domain*)
+* VCstudents.csv - (*from an export of a Find Students query 251506*)
 * VCstaff.csv - (*from an export of a Find Staff/Faculty query 251505*)
 * VCcourses.csv - (*from an export of a Course list query 251503*)
 * VCclasses.csv - (*from an export of a Find Class Permissions query 251502*)
