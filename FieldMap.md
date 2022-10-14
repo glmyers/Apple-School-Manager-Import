@@ -13,7 +13,7 @@ first_name | First Name
 middle_name | Middle Name
 last_name | Last Name
 grade_level | Current Grade
-email_address | Email 1
+email_address | Email 1 or Email 2 as appropriate
 sis_username | Username
 password_policy | ''
 location_id | School Level (*used to lookup* Abbreviation)
