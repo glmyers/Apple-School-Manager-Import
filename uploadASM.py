@@ -33,7 +33,8 @@ from fieldList import staffFields as fstaff
 from fieldList import coursesFields as fcourses
 from fieldList import classesFields as fclasses
 from fieldList import rostersFields as frosters
-from fieldList import gradesNoEmail
+#Domain for school email system
+domain = '@tsdch.org'
 
 
 def locationDict(filename):
@@ -56,6 +57,13 @@ def createStudents(inFile, outFile, divisions):
         writer.writeheader()
         #Output data to the file for all users.
         for row in reader:
+            # Confirm student email is in the school domain
+            if domain in row['Email 1']:
+                sEmail = row['Email 1']
+            elif domain in row['Email 2']:
+                sEmail = row['Email 2']
+            else:
+                continue
             new = defaultdict(dict)
             new['person_id'] = row['Person ID']
             new['person_number'] = ''
@@ -63,12 +71,7 @@ def createStudents(inFile, outFile, divisions):
             new['middle_name'] = ''
             new['last_name'] = row['Last Name']
             new['grade_level'] = row['Current Grade']
-            if gradesNoEmail(row['Grade']):
-                sEmail = row['Email 2']
-                new['sis_username'] = ''
-            else:
-                sEmail = row['Email 1']
-                new['sis_username'] = row['Username']
+            new['sis_username'] = row['Username']
             new['email_address'] = sEmail
             new['password_policy'] = ''
             new['location_id'] = divisions[row['School Level']]
