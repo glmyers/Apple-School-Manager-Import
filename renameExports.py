@@ -2,7 +2,7 @@
 '''Python script to rename and move Veracross CSV download files from the user's
 Downloads folder to a downloads folder located in the same locations as the
 script itself. The script will make the destination folder if it does not
-already exist.
+already exist. (Designed on a Mac and may require modification for different OS.)
 
 The CSV export files are expected to be downloaded immeadiately before the
 script is run from Veracross into the user's Downloads folder.
