@@ -3,7 +3,7 @@ Python script to automate the creation of upload files for Apple School Manager 
 ## Domain and Email
 Note that the students query utilized checks to ensure only students with a school email address are exported. Not all our students have functioning email in our system, but they all have an address assigned. Nonfunctioning addresses are store in the 'Email 2' of their record to avoid bounce list issues. The 'domain' global variable located under the import statements set to the domain for the the school where I work. It is utilized in the logic for choosing which of the two emails to use and causes students without a school email to be ignored.  
 ## Veracross export files
-The script expects five CSV export files from the Veracross school information system in a folder named "downloads" in the current working directory. The 'renameExports.py' script will move exported CSV files from the user's Downloads into the correct folder in the working directory while also striping off the information appeded to query names when downloading CSV files.  
+The script expects five CSV export files from the Veracross school information system in a folder named "downloads" in the current working directory. The 'renameExports.py' script will move exported CSV files from the Downloads in the user's home directory (*if exports are located elsewhere, simply edit the variable __sourceFolder__ in 'renameExports.py'*) into the correct folder in the working directory while also striping off the information appeded to query names when downloading CSV files.   
 * VCstudents.csv - (*from an export of a Find Students query 251506*)
 * VCstaff.csv - (*from an export of a Find Staff/Faculty query 251505*)
 * VCcourses.csv - (*from an export of a Course list query 251503*)
