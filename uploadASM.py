@@ -25,7 +25,6 @@ from sys import argv
 from pathlib import Path
 from getpass import getuser
 from collections import defaultdict
-from renameExports import vcFiles
 from shutil import make_archive
 #Import the fieldnames for the export files.
 from fieldList import studentsFields as fstudents
@@ -33,6 +32,8 @@ from fieldList import staffFields as fstaff
 from fieldList import coursesFields as fcourses
 from fieldList import classesFields as fclasses
 from fieldList import rostersFields as frosters
+#Function to rename and move Veracross CSV exports.
+from renameExports import vcFiles
 #Domain for school email system
 domain = '@tsdch.org'
 
