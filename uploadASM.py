@@ -33,7 +33,7 @@ from fieldList import coursesFields as fcourses
 from fieldList import classesFields as fclasses
 from fieldList import rostersFields as frosters
 #Function to rename and move Veracross CSV exports.
-from renameExports import vcFiles
+from renameExports import vcxFiles
 #Domain for school email system
 domain = '@tsdch.org'
 
@@ -197,7 +197,7 @@ def createRosters(inFile, outFile):
 
 
 def main():
-    vcFiles()
+    vcxFiles()
     print()
     inputs = Path(f'downloads')
     results = Path('uploadASM')
