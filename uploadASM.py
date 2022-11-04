@@ -19,23 +19,27 @@ ASM_files.zip containing the six files required is created in the same folder
 as this script and is ready to upload.
 '''
 
-#Import code desired from the standard library.
+# Import code desired from the standard library.
 import csv
 from sys import argv
 from pathlib import Path
 from getpass import getuser
 from collections import defaultdict
+from datetime import datetime
 from shutil import make_archive
+from shutil import move
+#Function to rename and move Veracross CSV exports.
+from renameExports import vcxFiles
 #Import the fieldnames for the export files.
 from fieldList import studentsFields as fstudents
 from fieldList import staffFields as fstaff
 from fieldList import coursesFields as fcourses
 from fieldList import classesFields as fclasses
 from fieldList import rostersFields as frosters
-#Function to rename and move Veracross CSV exports.
-from renameExports import vcxFiles
-#Domain for school email system
+# Domain for school email system
 domain = '@tsdch.org'
+# List of teachers with role "Other" that actually teach the class.
+multiTeacher = ['']
 
 
 def locationDict(filename):
@@ -72,7 +76,7 @@ def createStudents(inFile, outFile, divisions):
             new['middle_name'] = ''
             new['last_name'] = row['Last Name']
             new['grade_level'] = row['Current Grade']
-            new['sis_username'] = row['Username']
+            new['sis_username'] = sEmail
             new['email_address'] = sEmail
             new['password_policy'] = ''
             new['location_id'] = divisions[row['School Level']]
@@ -91,6 +95,13 @@ def createStaff(inFile, outFile, divisions):
         #Output data to the file for all users.
         staffDict = {}
         for row in reader:
+            # Confirm teacher email is in the school domain
+            if domain in row['Email 1']:
+                sEmail = row['Email 1']
+            elif domain in row['Email 2']:
+                sEmail = row['Email 2']
+            else:
+                continue
             if row['Person ID'] not in staffDict:
                 new = defaultdict(dict)
                 new['person_id'] = row['Person ID']
@@ -98,8 +109,8 @@ def createStaff(inFile, outFile, divisions):
                 new['first_name'] = row['First Nick Name']
                 new['middle_name'] = ''
                 new['last_name'] = row['Last Name']
-                new['email_address'] = row['Email 1']
-                new['sis_username'] = row['Username']
+                new['email_address'] = sEmail
+                new['sis_username'] = sEmail
                 new['location_id'] = divisions[row['School Level']]
                 staffDict[row['Person ID']] = new
             else:
@@ -147,6 +158,9 @@ def createClasses(inFile, outFile, divisions):
         #Output data to the file for all users.
         classesDict = dict()
         for row in reader:
+            # do not include those with role of 'Other'
+            if row['Person ID'] not in multiTeacher:
+                if row['Role'] == 'Other': continue
             # if not (row['Role'] == 'Primary Teacher' or
                     # row['Role'] == "Teacher's Aide"): continue
             if row['Internal Class ID'] not in classesDict:
@@ -201,7 +215,8 @@ def main():
     print()
     inputs = Path(f'downloads')
     results = Path('uploadASM')
-    #Locations found in Apple School Manager locations.csv
+    resultsZ = Path('uploadASMZ')
+    #Set Locations for ASM in uploadASM locations.csv
     locations = locationDict(f'{results}/locations.csv')
     #Export files from Veracross in CSV format, UTF-8
     sourceStudents = f'{inputs}/VCstudents.csv'
@@ -223,10 +238,11 @@ def main():
     createRosters(sourceRosters, resultRosters)
     print('Files are complete.')
     print()
-    make_archive('ASM_files', 'zip', results)
+    make_archive(f'{resultsZ}/ASM_files', 'zip', results)
     print('ZIP file is ready.')
     print()
     return
 
 
 if __name__ == '__main__': main()
+
