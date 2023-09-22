@@ -21,6 +21,8 @@ as this script and is ready to upload.
 
 # Import code desired from the standard library.
 import csv
+import paramiko
+from dotenv import dotenv_values
 from sys import argv
 from pathlib import Path
 from getpass import getuser
@@ -210,6 +212,21 @@ def createRosters(inFile, outFile):
     return
 
 
+def sendFile(inFile):
+    host = 'upload.appleschoolcontent.com'
+    port = 22
+    secrets = dotenv_values('.env')
+    with paramiko.Transport((host, port)) as transport:
+        username = secrets['usernameASM']
+        password = secrets['passwordASM']
+        transport.connect(username = username, password = password)
+        with paramiko.SFTPClient.from_transport(transport) as sftp:
+            path = './dropbox/ASM_files.zip'
+            localpath = inFile
+            sftp.put(localpath, path, callback=None, confirm=False)
+    return
+
+
 def main():
     vcxFiles()
     print()
@@ -240,6 +257,10 @@ def main():
     print()
     make_archive(f'{resultsZ}/ASM_files', 'zip', results)
     print('ZIP file is ready.')
+    print()
+    #Upload the ZIP file via SFTP to Apple School Manager
+    sendFile(f'{resultsZ}/ASM_files.zip')
+    print('ZIP file uploaded.')
     print()
     return
 
