@@ -215,6 +215,7 @@ def createRosters(inFile, outFile):
 def sendFile(inFile):
     host = 'upload.appleschoolcontent.com'
     port = 22
+    #The code assumes 'usernameASM' and 'passwordASM' are defined in a '.env' file.
     secrets = dotenv_values('.env')
     with paramiko.Transport((host, port)) as transport:
         username = secrets['usernameASM']
