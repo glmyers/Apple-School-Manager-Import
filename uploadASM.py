@@ -15,8 +15,10 @@ file names. The path of their location is set using the 'results' variable.
 
 ****DO NOT CHANGE THE NAMES OF THE RESULT FILES.****
 
-ASM_files.zip containing the six files required is created in the same folder
-as this script and is ready to upload.
+ASM_files.zip containing the six files required is created in "uploadASMZ" from
+which it is uploaded to Apple School Manager.
+
+The script rquire 'paramiko' and 'dotenv' be installed in Python (use pip).
 '''
 
 # Import code desired from the standard library.
